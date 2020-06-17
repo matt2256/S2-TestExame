@@ -14,12 +14,6 @@ namespace Entities
     
     public partial class Rejsearrangementer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rejsearrangementer()
-        {
-            this.Tildmeldings = new HashSet<Tildmelding>();
-        }
-    
         public int Id { get; set; }
         public string Title { get; set; }
         public string By { get; set; }
@@ -31,8 +25,7 @@ namespace Entities
         public Nullable<int> Tilmelding { get; set; }
         public Nullable<int> Transportør { get; set; }
     
+        public virtual Tildmelding Tildmelding { get; set; }
         public virtual Transportør Transportør1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tildmelding> Tildmeldings { get; set; }
     }
 }

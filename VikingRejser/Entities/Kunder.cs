@@ -14,20 +14,12 @@ namespace Entities
     
     public partial class Kunder
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kunder()
-        {
-            this.Tildmeldings = new HashSet<Tildmelding>();
-        }
-    
         public int Id { get; set; }
         public string Navn { get; set; }
         public string Adresse { get; set; }
         public string Telefon { get; set; }
-        public string RejseArrangementer { get; set; }
         public Nullable<int> Tilmelding { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tildmelding> Tildmeldings { get; set; }
+        public virtual Tildmelding Tildmelding { get; set; }
     }
 }

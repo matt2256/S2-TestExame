@@ -4,14 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ae5bca4be6b6442aa1006053c6b16cc6" Name="Diagram1">
+      <Diagram DiagramId="e2c43c68beb2467f9137484b4a0709bf" Name="Diagram1">
         <EntityTypeShape EntityType="VikingRejserModel.Kunder" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="VikingRejserModel.Rejsearrangementer" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="VikingRejserModel.Tildmelding" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VikingRejserModel.Transportør" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingRejserModel.Tildmelding" Width="1.875" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VikingRejserModel.Transportør" Width="2.125" PointX="0.5" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="VikingRejserModel.FK_Kunder_Tilmelding" ManuallyRouted="false" />
         <AssociationConnector Association="VikingRejserModel.FK_Tildmelding_Kunde" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingRejserModel.FK_Rejsearrangementer_Tilmelding" ManuallyRouted="false" />
         <AssociationConnector Association="VikingRejserModel.FK_Rejsearrangementer_Transportør" ManuallyRouted="false" />
         <AssociationConnector Association="VikingRejserModel.FK_Tildmelding_Rejsearragementer" ManuallyRouted="false" />
+        <AssociationConnector Association="VikingRejserModel.FK_Transportør_Rejsearragement" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -9,18 +9,17 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Navn" Type="varchar" MaxLength="50" />
           <Property Name="Adresse" Type="varchar" MaxLength="50" />
           <Property Name="Telefon" Type="varchar" MaxLength="50" />
-          <Property Name="RejseArrangementer" Type="varchar" MaxLength="50" />
           <Property Name="Tilmelding" Type="int" />
         </EntityType>
         <EntityType Name="Rejsearrangementer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="By" Type="varchar" MaxLength="50" />
           <Property Name="Stardato" Type="datetime" />
@@ -35,7 +34,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kunde" Type="int" Nullable="false" />
           <Property Name="Rejsearrangementer" Type="int" Nullable="false" />
         </EntityType>
@@ -43,7 +42,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Navn" Type="varchar" MaxLength="50" />
           <Property Name="Adresse" Type="varchar" MaxLength="50" />
           <Property Name="Telefon" Type="varchar" MaxLength="50" />
@@ -161,19 +160,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Navn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RejseArrangementer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Tilmelding" Type="Int32" />
-          <NavigationProperty Name="Tildmeldings" Relationship="Self.FK_Tildmelding_Kunde" FromRole="Kunder" ToRole="Tildmelding" />
+          <NavigationProperty Name="Tildmelding" Relationship="Self.FK_Kunder_Tilmelding" FromRole="Kunder" ToRole="Tildmelding" />
         </EntityType>
         <EntityType Name="Rejsearrangementer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Stardato" Type="DateTime" Precision="3" />
@@ -183,31 +181,43 @@
           <Property Name="Beskrivelse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Tilmelding" Type="Int32" />
           <Property Name="Transportør" Type="Int32" />
+          <NavigationProperty Name="Tildmelding" Relationship="Self.FK_Rejsearrangementer_Tilmelding" FromRole="Rejsearrangementer" ToRole="Tildmelding" />
           <NavigationProperty Name="Transportør1" Relationship="Self.FK_Rejsearrangementer_Transportør" FromRole="Rejsearrangementer" ToRole="Transportør" />
-          <NavigationProperty Name="Tildmeldings" Relationship="Self.FK_Tildmelding_Rejsearragementer" FromRole="Rejsearrangementer" ToRole="Tildmelding" />
         </EntityType>
         <EntityType Name="Tildmelding">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Kunde" Type="Int32" Nullable="false" />
           <Property Name="Rejsearrangementer" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Kunder" Relationship="Self.FK_Tildmelding_Kunde" FromRole="Tildmelding" ToRole="Kunder" />
-          <NavigationProperty Name="Rejsearrangementer1" Relationship="Self.FK_Tildmelding_Rejsearragementer" FromRole="Tildmelding" ToRole="Rejsearrangementer" />
+          <NavigationProperty Name="Rejsearrangementers" Relationship="Self.FK_Rejsearrangementer_Tilmelding" FromRole="Tildmelding" ToRole="Rejsearrangementer" />
         </EntityType>
         <EntityType Name="Transportør">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Navn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Bemærkning" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Rejsearragement" Type="Int32" />
-          <NavigationProperty Name="Rejsearrangementers" Relationship="Self.FK_Rejsearrangementer_Transportør" FromRole="Transportør" ToRole="Rejsearrangementer" />
+          <NavigationProperty Name="Rejsearrangementer" Relationship="Self.FK_Transportør_Rejsearragement" FromRole="Transportør" ToRole="Rejsearrangementer" />
         </EntityType>
+        <Association Name="FK_Kunder_Tilmelding">
+          <End Role="Tildmelding" Type="Self.Tildmelding" Multiplicity="0..1" />
+          <End Role="Kunder" Type="Self.Kunder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tildmelding">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kunder">
+              <PropertyRef Name="Tilmelding" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tildmelding_Kunde">
           <End Role="Kunder" Type="Self.Kunder" Multiplicity="1" />
           <End Role="Tildmelding" Type="Self.Tildmelding" Multiplicity="*" />
@@ -217,6 +227,18 @@
             </Principal>
             <Dependent Role="Tildmelding">
               <PropertyRef Name="Kunde" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rejsearrangementer_Tilmelding">
+          <End Role="Tildmelding" Type="Self.Tildmelding" Multiplicity="0..1" />
+          <End Role="Rejsearrangementer" Type="Self.Rejsearrangementer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tildmelding">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rejsearrangementer">
+              <PropertyRef Name="Tilmelding" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -244,14 +266,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transportør_Rejsearragement">
+          <End Role="Rejsearrangementer" Type="Self.Rejsearrangementer" Multiplicity="0..1" />
+          <End Role="Transportør" Type="Self.Transportør" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rejsearrangementer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transportør">
+              <PropertyRef Name="Rejsearragement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="VikingRejserEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Kunders" EntityType="Self.Kunder" />
           <EntitySet Name="Rejsearrangementers" EntityType="Self.Rejsearrangementer" />
           <EntitySet Name="Tildmeldings" EntityType="Self.Tildmelding" />
           <EntitySet Name="Transportør" EntityType="Self.Transportør" />
+          <AssociationSet Name="FK_Kunder_Tilmelding" Association="Self.FK_Kunder_Tilmelding">
+            <End Role="Tildmelding" EntitySet="Tildmeldings" />
+            <End Role="Kunder" EntitySet="Kunders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tildmelding_Kunde" Association="Self.FK_Tildmelding_Kunde">
             <End Role="Kunder" EntitySet="Kunders" />
             <End Role="Tildmelding" EntitySet="Tildmeldings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rejsearrangementer_Tilmelding" Association="Self.FK_Rejsearrangementer_Tilmelding">
+            <End Role="Tildmelding" EntitySet="Tildmeldings" />
+            <End Role="Rejsearrangementer" EntitySet="Rejsearrangementers" />
           </AssociationSet>
           <AssociationSet Name="FK_Rejsearrangementer_Transportør" Association="Self.FK_Rejsearrangementer_Transportør">
             <End Role="Transportør" EntitySet="Transportør" />
@@ -260,6 +302,10 @@
           <AssociationSet Name="FK_Tildmelding_Rejsearragementer" Association="Self.FK_Tildmelding_Rejsearragementer">
             <End Role="Rejsearrangementer" EntitySet="Rejsearrangementers" />
             <End Role="Tildmelding" EntitySet="Tildmeldings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transportør_Rejsearragement" Association="Self.FK_Transportør_Rejsearragement">
+            <End Role="Rejsearrangementer" EntitySet="Rejsearrangementers" />
+            <End Role="Transportør" EntitySet="Transportør" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -275,7 +321,6 @@
                 <ScalarProperty Name="Navn" ColumnName="Navn" />
                 <ScalarProperty Name="Adresse" ColumnName="Adresse" />
                 <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="RejseArrangementer" ColumnName="RejseArrangementer" />
                 <ScalarProperty Name="Tilmelding" ColumnName="Tilmelding" />
               </MappingFragment>
             </EntityTypeMapping>

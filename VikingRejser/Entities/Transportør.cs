@@ -14,12 +14,6 @@ namespace Entities
     
     public partial class Transportør
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Transportør()
-        {
-            this.Rejsearrangementers = new HashSet<Rejsearrangementer>();
-        }
-    
         public int Id { get; set; }
         public string Navn { get; set; }
         public string Adresse { get; set; }
@@ -27,7 +21,6 @@ namespace Entities
         public string Bemærkning { get; set; }
         public Nullable<int> Rejsearragement { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rejsearrangementer> Rejsearrangementers { get; set; }
+        public virtual Rejsearrangementer Rejsearrangementer { get; set; }
     }
 }

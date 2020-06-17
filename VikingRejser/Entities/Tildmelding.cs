@@ -14,11 +14,18 @@ namespace Entities
     
     public partial class Tildmelding
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tildmelding()
+        {
+            this.Rejsearrangementers = new HashSet<Rejsearrangementer>();
+        }
+    
         public int Id { get; set; }
         public int Kunde { get; set; }
         public int Rejsearrangementer { get; set; }
     
         public virtual Kunder Kunder { get; set; }
-        public virtual Rejsearrangementer Rejsearrangementer1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rejsearrangementer> Rejsearrangementers { get; set; }
     }
 }
