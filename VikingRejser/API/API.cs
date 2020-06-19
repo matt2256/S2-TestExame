@@ -13,7 +13,7 @@ namespace API
         /// Represent a method that uses a api for getting data about the weather
         /// </summary>
         /// <param name="_cityName">Represent the input (string) for the city</param>
-        public void GetWeatherData(string _cityName, int _key)
+        public void GetWeatherData(string _cityName, int _key, object _weatherType, object _temp, object _windSpeed, object _countryName )
         {
             using(WebClient web = new WebClient())
             {
@@ -25,7 +25,14 @@ namespace API
 
                 WeatherInformation.root output = result;
 
-
+                //main(WeatherType) = weather.main
+                _weatherType = string.Format("{0}", output.weather.main);
+                //temp(Temperature) = main.temp
+                _temp = string.Format("{0}", output.main.temp);
+                //speed(WindSpeed) = wind.speed
+                _windSpeed = string.Format("{0}", output.wind.speed);
+                //country(CountryName) = sys.country
+                _countryName = string.Format("{0}", output.sys.country);
             }
         }
     }

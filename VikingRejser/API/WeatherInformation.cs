@@ -61,12 +61,13 @@ namespace API
         /// </summary>
         public class root
         {
-            public string name { get; set; }
+            public weather weather { get; set; }
             public sys sys { get; set; }
             public double dt { get; set; }
             public main main { get; set; }
             public List<weather> Weathers { get; set; }
             public coord coord { get; set; }
+            public wind wind { get; set; }
         }
     }
 }
