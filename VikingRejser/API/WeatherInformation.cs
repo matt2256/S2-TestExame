@@ -38,16 +38,27 @@ namespace API
             public double temp { get; set; }
         }
 
+        /// <summary>
+        /// Represent a public class,  used to access wind data form OpenWeatherMap api
+        /// </summary>
         public class wind
         {
+            //Represent the wind speed
             public int speed { get; set; }
         }
 
+        /// <summary>
+        /// Represent a public class, used to access country specifik data form OpenWeatherMap api
+        /// </summary>
         public class sys
         {
+            //Represent thge country name 
             public string country { get; set; }
         }
 
+        /// <summary>
+        /// Represent a public class, used for main control of all the classes above 4
+        /// </summary>
         public class root
         {
             public string name { get; set; }
