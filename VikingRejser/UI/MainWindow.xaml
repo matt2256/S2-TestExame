@@ -120,6 +120,16 @@
                     </Grid>
                 </Grid>
             </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Vejr Information"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
