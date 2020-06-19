@@ -16,7 +16,7 @@ namespace DataAccess.CRUD
         /// <param name="_Name">Represnet the name (string) of the client</param>
         /// <param name="_Address">Represnet the address (string) of the client</param>
         /// <param name="_Cellphone">Represent the cellphone number (string) of the client</param>
-        public void EditClient(int _Id, string _Name, string _Address, string _Cellphone)
+        public void EditClient(int _Id,string _Name, string _Address, string _Cellphone)
         {
             //Represent a object of VikingRejser called context
             VikingRejserEntities context = new VikingRejserEntities();
