@@ -42,13 +42,13 @@ namespace DataAccess.CRUD
         /// <summary>
         /// Represent a method for creating travel data
         /// </summary>
-        /// <param name="_title"></param>
-        /// <param name="_city"></param>
-        /// <param name="_startDate"></param>
-        /// <param name="_endDate"></param>
-        /// <param name="_price"></param>
-        /// <param name="_maxparticipant"></param>
-        /// <param name="_describtion"></param>
+        /// <param name="_title">Represent the Title (string) of the travel</param>
+        /// <param name="_city">Represent the By (string) of the travel</param>
+        /// <param name="_startDate">Represent the Startdato (datetime) of the travel</param>
+        /// <param name="_endDate">Represent the Slutdato (datetime) of the travel</param>
+        /// <param name="_price">Represent the Pris (int) of the travel</param>
+        /// <param name="_maxparticipant">Represent the MaxAntal (string) of the travel</param>
+        /// <param name="_describtion">Represent the Beskrivelse (string) of the travel</param>
         public void CreateTravel(string _title, string _city, DateTime _startDate, DateTime _endDate, int _price, string _maxparticipant, string _describtion)
         {
             //Represent a object of VikingRejserEntities called _context

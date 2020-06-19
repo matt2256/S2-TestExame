@@ -27,6 +27,7 @@ namespace UI
         {
             InitializeComponent();
             LoadClientDtg();
+            LoadTravelDtg();
         }
         #region Client
         /// <summary>
@@ -71,13 +72,44 @@ namespace UI
         #endregion
 
         #region Travel
+        /// <summary>
+        /// Represent a method for creating travel data 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddTravel_Click(object sender, RoutedEventArgs e)
         {
+            //Repesent a object of VikingRejserEntities called _context
             VikingRejserEntities _context = new VikingRejserEntities();
 
             Create create = new Create();
 
-            create.
+            create.CreateTravel(TbTravelTitle.Text, TbTravelCity.Text, Convert.ToDateTime(DPTravelStartDate.Text) , Convert.ToDateTime(DPTravelEndDate.Text), Convert.ToInt32(TbTravelPrice.Text), TbTravelNumbers.Text, TbTravelDecribtion.Text);
+
+            //Represent a messagebox showing that a client has been edited
+            MessageBox.Show("Rejse oprettet");
+
+            LoadTravelDtg();
+        }
+
+        /// <summary>
+        /// Represent a method for editing travel data 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnEditTravel_Click(object sender, RoutedEventArgs e)
+        {
+            //Represent a object of VikingRejserEntities called context
+            VikingRejserEntities context = new VikingRejserEntities();
+
+            Edit edit = new Edit();
+
+            edit.EditTravel(Convert.ToInt32(TbTravelId.Text) ,TbTravelTitle.Text, TbTravelCity.Text, Convert.ToDateTime(DPTravelStartDate.Text), Convert.ToDateTime(DPTravelEndDate.Text), Convert.ToInt32(TbTravelPrice.Text), TbTravelNumbers.Text, TbTravelDecribtion.Text);
+
+            //Represent a messagebox showing that a unique travel´s data has been changed
+            MessageBox.Show("Rejse data er blevet ændret");
+
+            LoadTravelDtg();
         }
         #endregion
 
@@ -130,10 +162,9 @@ namespace UI
             //sets the CollectionViewSource object _travelSource to what data that is in Rejsearrangementer
             _travelSource.Source = _context.Rejsearrangementers.Local;
         }
+
+
+
         #endregion
-
-
-
-
     }
 }
